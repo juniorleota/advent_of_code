@@ -23,6 +23,17 @@ public class Day1 {
     part2(elems);
   }
 
+  static void part1(List<Integer> elems) {
+    int count = 0;
+    for (int i = 1; i < elems.size(); i++) {
+      Integer prev = elems.get(i - 1);
+      Integer curr = elems.get(i);
+      boolean biggerThanPrev = curr > prev;
+      if(biggerThanPrev) count++;
+    }
+    System.out.println(count);
+  }
+
   static void part2(List<Integer> elems) {
     int window = 3;
     int prevSum = getInitialSum(elems, window);
@@ -42,16 +53,5 @@ public class Day1 {
 
   static int getInitialSum(List<Integer> elems, int window) {
     return IntStream.range(0, window).map(elems::get).sum();
-  }
-
-  static void part1(List<Integer> elems) {
-    int count = 0;
-    for (int i = 1; i < elems.size(); i++) {
-      Integer prev = elems.get(i - 1);
-      Integer curr = elems.get(i);
-      boolean biggerThanPrev = curr > prev;
-      if(biggerThanPrev) count++;
-    }
-    System.out.println(count);
   }
 }
