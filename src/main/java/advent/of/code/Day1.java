@@ -29,8 +29,12 @@ public class Day1 {
 
     int count = 0;
     for (int i = window; i < elems.size(); i++) {
-      int currentSum = prevSum - elems.get(i-window) + elems.get(i);
+      Integer windowLastElem = elems.get(i - window);
+      Integer curr = elems.get(i);
+      int currentSum = prevSum - windowLastElem + curr;
+
       if (currentSum > prevSum) count++;
+
       prevSum = currentSum;
     }
     System.out.println(count);
