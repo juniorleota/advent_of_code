@@ -42,13 +42,7 @@ public class Day2 {
   }
 
   enum Direction {
-    UP(-1), DOWN(1), FORWARD(1), BACK(-1);
-    public int multiplier;
-
-    Direction(int multiplier) {
-      this.multiplier = multiplier;
-    }
-
+    UP, DOWN, FORWARD;
     public static Direction parse(String str) {
       return Direction.valueOf(str.toUpperCase());
     }
@@ -57,18 +51,22 @@ public class Day2 {
   static class SubmarineLocation {
     int depth;
     int horizontalPos;
+    int aim;
 
     public SubmarineLocation() {
       this.depth = 0;
       this.horizontalPos = 0;
+      this.aim = 0;
     }
 
     public void addMovement(Data movement) {
-      Direction direction = movement.direction;
-      if (direction == Direction.UP || direction == Direction.DOWN) {
-        this.depth += movement.value * direction.multiplier;
-      } else {
-        this.horizontalPos += movement.value * direction.multiplier;
+      switch (movement.direction) {
+        case UP -> this.aim -= movement.value;
+        case DOWN -> this.aim += movement.value;
+        case FORWARD -> {
+          this.horizontalPos += movement.value;
+          this.depth += movement.value * this.aim;
+        }
       }
     }
 
