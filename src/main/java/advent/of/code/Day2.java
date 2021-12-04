@@ -22,7 +22,7 @@ public class Day2 {
     System.out.println(location.getLocation());
   }
 
-  class DataParser {
+  static class DataParser {
     public static Data parse(String line) {
       String[] tokens = line.trim().split(" ");
       Direction direction = Direction.parse(tokens[0]);
